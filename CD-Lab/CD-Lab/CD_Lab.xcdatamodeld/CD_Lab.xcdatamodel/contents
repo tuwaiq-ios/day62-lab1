@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Customer" representedClassName="Customer" syncable="YES" codeGenerationType="class">
+        <attribute name="firstName" optional="YES" attributeType="String"/>
+        <attribute name="lastName" optional="YES" attributeType="String"/>
+        <relationship name="order" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Order"/>
+        <relationship name="trackable" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trackable"/>
+    </entity>
+    <entity name="Lifetime" representedClassName="Lifetime" syncable="YES" codeGenerationType="class">
+        <attribute name="quantity" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="receiptData" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="returnFlag" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="shipData" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="shipInstructions" optional="YES" attributeType="String"/>
+        <relationship name="order" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="lifetime" inverseEntity="Order"/>
+    </entity>
+    <entity name="Order" representedClassName="Order" syncable="YES" codeGenerationType="class">
+        <attribute name="orderDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="shippingPriority" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <attribute name="totalPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="customer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Customer"/>
+        <relationship name="lifetime" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Lifetime" inverseName="order" inverseEntity="Lifetime"/>
+        <relationship name="part" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Part" inverseName="order" inverseEntity="Part"/>
+    </entity>
+    <entity name="Part" representedClassName="Part" syncable="YES" codeGenerationType="class">
+        <attribute name="image" optional="YES" attributeType="Binary"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="retailPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="size" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="order" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="part" inverseEntity="Order"/>
+        <relationship name="supplier" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Supplier" inverseName="part" inverseEntity="Supplier"/>
+    </entity>
+    <entity name="Supplier" representedClassName="Supplier" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="website" optional="YES" attributeType="URI"/>
+        <relationship name="part" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Part" inverseName="supplier" inverseEntity="Part"/>
+        <relationship name="trackable" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trackable"/>
+    </entity>
+    <entity name="Trackable" representedClassName="Trackable" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="phone" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="Customer" positionX="-113.5234375" positionY="79.0546875" width="128" height="89"/>
+        <element name="Lifetime" positionX="104.49609375" positionY="202.90625" width="128" height="133"/>
+        <element name="Order" positionX="-119.8046875" positionY="259.62109375" width="128" height="134"/>
+        <element name="Part" positionX="308.83203125" positionY="255.765625" width="128" height="133"/>
+        <element name="Supplier" positionX="309.03515625" positionY="82.0546875" width="128" height="103"/>
+        <element name="Trackable" positionX="75.7421875" positionY="-4.46875" width="128" height="59"/>
+    </elements>
+</model>
