@@ -20,6 +20,7 @@
 		FA30C6A52774ABE0001C869F /* TabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA30C6A42774ABE0001C869F /* TabVC.swift */; };
 		FA55657E27750D2E00482EB8 /* LifeTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA55657D27750D2D00482EB8 /* LifeTime.swift */; };
 		FA5565802775114000482EB8 /* NewLifeTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA55657F2775114000482EB8 /* NewLifeTime.swift */; };
+		FA5565882775275E00482EB8 /* NewPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5565872775275E00482EB8 /* NewPart.swift */; };
 		FA87726327744A10008B080E /* DataServiec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA87726227744A10008B080E /* DataServiec.swift */; };
 		FA87726527744A60008B080E /* CustomerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA87726427744A60008B080E /* CustomerVC.swift */; };
 		FA87726727744B90008B080E /* OrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA87726627744B90008B080E /* OrderVC.swift */; };
@@ -42,6 +43,7 @@
 		FA30C6A42774ABE0001C869F /* TabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabVC.swift; sourceTree = "<group>"; };
 		FA55657D27750D2D00482EB8 /* LifeTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeTime.swift; sourceTree = "<group>"; };
 		FA55657F2775114000482EB8 /* NewLifeTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLifeTime.swift; sourceTree = "<group>"; };
+		FA5565872775275E00482EB8 /* NewPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPart.swift; sourceTree = "<group>"; };
 		FA87726227744A10008B080E /* DataServiec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiec.swift; sourceTree = "<group>"; };
 		FA87726427744A60008B080E /* CustomerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerVC.swift; sourceTree = "<group>"; };
 		FA87726627744B90008B080E /* OrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderVC.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				FA30C6A22774AB5F001C869F /* PartVC.swift */,
+				FA5565872775275E00482EB8 /* NewPart.swift */,
 			);
 			path = Part;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 				FA5565802775114000482EB8 /* NewLifeTime.swift in Sources */,
 				FA30C69F2774A63A001C869F /* SupplierVC.swift in Sources */,
 				FA256450276F3CC3004A0462 /* AppDelegate.swift in Sources */,
+				FA5565882775275E00482EB8 /* NewPart.swift in Sources */,
 				FA87726527744A60008B080E /* CustomerVC.swift in Sources */,
 				FA87726327744A10008B080E /* DataServiec.swift in Sources */,
 				FA30C6A12774AB2B001C869F /* NewSupplier.swift in Sources */,

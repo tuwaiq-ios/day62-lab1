@@ -41,7 +41,7 @@ class SupplierVc : UIViewController, UITableViewDelegate, UITableViewDataSource,
             return
         }
         let partVC = PartVC()
-//        partVC.supplieranttity = fetchSupplier
+        partVC.supplier = fetchSupplier
         let navController = UINavigationController(rootViewController: partVC)
         present(navController, animated: true, completion: nil)
     }
