@@ -8,7 +8,7 @@
 import UIKit
 
 
-class NewPart: UIViewController, UITextFieldDelegate {
+class NewPart: UIViewController, UITextFieldDelegate,  UIImagePickerControllerDelegate , UINavigationControllerDelegate {
 
    
  
@@ -44,6 +44,22 @@ class NewPart: UIViewController, UITextFieldDelegate {
         tf.delegate = self
         tf.layer.cornerRadius = 20
         return tf
+    }()
+    lazy var img: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        //        image.backgroundColor = .yellow
+        image.image = UIImage(systemName: "person")
+    
+        image.isUserInteractionEnabled = true
+        return image
+    }()
+    lazy var imagePicker : UIImagePickerController = {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
+        return imagePicker
     }()
     lazy var addButton: UIButton = {
         let b = UIButton()
@@ -94,7 +110,8 @@ class NewPart: UIViewController, UITextFieldDelegate {
         )
         s.name = TF1.text ?? ""
         s.retailPrice = Double(TF2.text ?? "")!
-        s.size = Double(TF2.text ?? "")!
+        s.size = Double(TF3.text ?? "")!
+        s.image = img.image?.pngData()
         
         DataService.shared.saveContext()
     }
@@ -105,7 +122,8 @@ class NewPart: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .gray
-        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        img.addGestureRecognizer(tapRecognizer)
         
         view.addSubview(LabelN)
         view.addSubview(LabelID)
@@ -149,15 +167,24 @@ class NewPart: UIViewController, UITextFieldDelegate {
             TF3.heightAnchor.constraint(equalToConstant: 48),
             TF3.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -48)
         ])
+        view.addSubview(img)
         NSLayoutConstraint.activate([
+            img.topAnchor.constraint(equalTo: TF3.bottomAnchor, constant: 10),
+            img.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -150),
+            img.heightAnchor.constraint(equalToConstant: 100),
+            img.widthAnchor.constraint(equalTo: img.heightAnchor,multiplier: 200/200)
+        ])
+        
+        NSLayoutConstraint.activate([
+            addButton.topAnchor.constraint(equalTo: img.bottomAnchor, constant: 10),
             addButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -80),
             addButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 80),
-            addButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -300),
+//            addButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -300),
             addButton.widthAnchor.constraint(equalToConstant: 400),
             addButton.heightAnchor.constraint(equalToConstant: 60),
         ])
         
-   
+      
      
     }
     
@@ -166,6 +193,56 @@ class NewPart: UIViewController, UITextFieldDelegate {
         dismiss(animated: true, completion: nil)
         return true
     }
+    
+    @objc func imageTapped() {
+        print("Image tapped")
+        presentPhotoInputActionsheet()
+        //        present(imagePicker, animated: true)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.editedImage] ?? info [.originalImage] as? UIImage
+        img.image = image as? UIImage
+        dismiss(animated: true)
+    }
+    
+    @objc private func presentPhotoInputActionsheet() {
+        let actionSheet = UIAlertController(title: "تغيير الصوره",
+                                            message: " تغيير صوره الملف الشخصي من",
+                                            preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "الكاميرا📷 ", style: .default, handler: { [weak self] _ in
+            
+            let picker = UIImagePickerController()
+            picker.sourceType = .camera
+            picker.delegate = self
+            picker.allowsEditing = true
+            self?.present(picker, animated: true)
+            
+        }))
+        actionSheet.addAction(UIAlertAction(title: "مكتبه الصور🌄", style: .default, handler: { [weak self] _ in
+            
+            let picker = UIImagePickerController()
+            picker.sourceType = .photoLibrary
+            picker.delegate = self
+            picker.allowsEditing = true
+            self?.present(picker, animated: true)
+            
+        }))
+        actionSheet.addAction(UIAlertAction(title: "إلغاء", style: .cancel, handler: nil))
+        
+        present(actionSheet, animated: true)
+        //            setupImagePicker()
+    }
+    
+    func setUpImage() {
+        
+        img.isUserInteractionEnabled = true
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(presentPhotoInputActionsheet))
+        
+        img.addGestureRecognizer(tapRecognizer)
+        
+        view.addSubview(img)
+    }
+
     
 
     

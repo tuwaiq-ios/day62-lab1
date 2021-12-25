@@ -98,10 +98,12 @@ extension PartVC {
 //        let cell = UITableViewCell.init(style: .subtitle, reuseIdentifier: "123")
         
         let order = fetchedResultsController?.fetchedObjects?[indexPath.row]
-        
+         print(order ?? 0)
          cell.label2.text = "Name: \(order?.name ?? "")"
          cell.label3.text = "Retail Price:\(order!.retailPrice)"
          cell.label6.text =  "Size: \(order!.size)"
+//         cell.img.image = UIImage(data: order!.image!)
+//         cell.img.image = UIImage(data: order!.image!)
       
 
         return cell
@@ -114,7 +116,11 @@ extension PartVC {
             return 225
         }
     }
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+ let fetchSupplier = fetchedResultsController?.fetchedObjects?[indexPath.row]
+        
+     print(fetchSupplier)
+    }
 
      func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         return UISwipeActionsConfiguration(
@@ -189,7 +195,15 @@ class Cell3: UITableViewCell {
         return label
         
     }()
+    lazy var img: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        //        image.backgroundColor = .yellow
+        image.image = UIImage(systemName: "person")
     
+        image.isUserInteractionEnabled = true
+        return image
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -204,6 +218,7 @@ class Cell3: UITableViewCell {
         self.addSubview(label3)
         self.addSubview(label4)
         self.addSubview(label6)
+        self.addSubview(img)
         
         NSLayoutConstraint.activate([
             label2.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
@@ -221,7 +236,14 @@ class Cell3: UITableViewCell {
             label6.topAnchor.constraint(equalTo: label4.bottomAnchor, constant: 10),
             label6.rightAnchor.constraint(equalTo: self.rightAnchor),
             label6.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 9),
+            img.topAnchor.constraint(equalTo: label6.bottomAnchor, constant: 10),
+//            img.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -150),
+            img.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30),
+            img.heightAnchor.constraint(equalToConstant: 100),
+            img.widthAnchor.constraint(equalToConstant: 100)
         ])
+        
+ 
     }
     
     required init?(coder: NSCoder) {
