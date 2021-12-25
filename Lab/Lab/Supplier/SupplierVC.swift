@@ -30,8 +30,8 @@ class SupplierVc : UIViewController, UITableViewDelegate, UITableViewDataSource,
         let cell = tableView.dequeueReusableCell(withIdentifier: "SupplierCell", for: indexPath) as! SupplierCell
         
         let data = fetchedResultsController?.fetchedObjects?[indexPath.row]
-        cell.nameLable.text = data?.name
-        cell.websiteLable.text = data?.website?.absoluteString
+        cell.nameLable.text = "Name: \(data!.name!)"
+        cell.websiteLable.text = "Website: \((data!.website?.absoluteString)!)"
         
         return  cell
     }
