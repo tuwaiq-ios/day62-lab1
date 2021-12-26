@@ -13,7 +13,8 @@ class CustomersVC: UITableViewController, NSFetchedResultsControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.backgroundColor = #colorLiteral(red: 0.8457269349, green: 0.9060993338, blue: 1, alpha: 1)
+        tableView.register(CustomerCell.self, forCellReuseIdentifier: CustomerCell.identifire)
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Add",
             style: .done,
@@ -75,20 +76,21 @@ extension CustomersVC {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell.init(style: .subtitle, reuseIdentifier: "123")
-        
+//        let cell = UITableViewCell.init(style: .subtitle, reuseIdentifier: "123")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomerCell", for: indexPath) as! CustomerCell
         let customer = fetchedResultsController?.fetchedObjects?[indexPath.row]
         
-        cell.textLabel?.text = "First Name: \(customer?.firstname ?? "")"
-        cell.detailTextLabel?.text = "Last Name:\(customer?.lastName ?? "")"
-
+        cell.nLable.text = "First Name: \(customer?.firstname ?? "")"
+        cell.wLable.text = "Last Name:\(customer?.lastName ?? "")"
+        cell.pLable.text = "Phone:\(customer?.phone ?? "")"
+        cell.aLable.text = "Address:\(customer?.address ?? "")"
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         guard let customer = fetchedResultsController?.fetchedObjects?[indexPath.row] else {
-            return
+            return 
         }
         
         let newVC = OrderVC()
@@ -98,7 +100,9 @@ extension CustomersVC {
         present(navController, animated: true, completion: nil)
     }
     
-
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 185
+    }
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         return UISwipeActionsConfiguration(
             actions: [
@@ -118,3 +122,78 @@ extension CustomersVC {
     }
 }
 
+
+
+class CustomerCell: UITableViewCell {
+    static let identifire = "CustomerCell"
+    
+    let nLable: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.text = ""
+        label.font = label.font.withSize(19)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let wLable: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.text = ""
+        label.font = label.font.withSize(19)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    let pLable: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.text = ""
+        label.font = label.font.withSize(19)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let aLable: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.text = ""
+        label.font = label.font.withSize(19)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+        
+        contentView.backgroundColor = .white
+        
+        self.addSubview(nLable)
+        self.addSubview(wLable)
+        self.addSubview(pLable)
+        self.addSubview(aLable)
+        
+        NSLayoutConstraint.activate([
+            nLable.topAnchor.constraint(equalTo: self.topAnchor),
+            nLable.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 20),
+            nLable.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
+            
+            wLable.topAnchor.constraint(equalTo: nLable.bottomAnchor, constant: 27),
+            wLable.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 10),
+            wLable.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
+            
+            pLable.topAnchor.constraint(equalTo: wLable.bottomAnchor, constant: 27),
+            pLable.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 10),
+            pLable.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
+            
+            aLable.topAnchor.constraint(equalTo: pLable.bottomAnchor, constant: 27),
+            aLable.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 10),
+            aLable.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
+        ])
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+}

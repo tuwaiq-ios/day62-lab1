@@ -50,7 +50,7 @@ class NewPart: UIViewController, UITextFieldDelegate,  UIImagePickerControllerDe
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         //        image.backgroundColor = .yellow
-        image.image = UIImage(systemName: "person")
+        image.image = UIImage(systemName: "photo")
     
         image.isUserInteractionEnabled = true
         return image
@@ -69,7 +69,7 @@ class NewPart: UIViewController, UITextFieldDelegate,  UIImagePickerControllerDe
         b.setTitle(NSLocalizedString("add", comment:""), for: .normal)
         b.titleLabel?.font = UIFont(name: "Avenir-Light", size: 27.0)
         b.layer.cornerRadius = 25
-        b.backgroundColor = UIColor(red: (87/255), green: (107/255), blue: (96/255), alpha: 1)
+        b.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         return b
     }()
     
@@ -90,6 +90,8 @@ class NewPart: UIViewController, UITextFieldDelegate,  UIImagePickerControllerDe
         label.textAlignment = .left
         return label
     }()
+    
+    
     public let LabelI: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Avenir-Light", size: 20)
@@ -100,12 +102,11 @@ class NewPart: UIViewController, UITextFieldDelegate,  UIImagePickerControllerDe
     }()
     
     
- 
+
     
     
     @objc func add() {
-      
-
+    
         let s = Part(
             context: DataService.shared.viewContext
         )
@@ -122,7 +123,7 @@ class NewPart: UIViewController, UITextFieldDelegate,  UIImagePickerControllerDe
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .gray
+        view.backgroundColor = #colorLiteral(red: 0.8457269349, green: 0.9060993338, blue: 1, alpha: 1)
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         img.addGestureRecognizer(tapRecognizer)
         
@@ -203,10 +204,10 @@ class NewPart: UIViewController, UITextFieldDelegate,  UIImagePickerControllerDe
     }
     
     @objc private func presentPhotoInputActionsheet() {
-        let actionSheet = UIAlertController(title: "تغيير الصوره",
-                                            message: " تغيير صوره الملف الشخصي من",
+        let actionSheet = UIAlertController(title: " Choose Product Image ",
+                                            message: "",
                                             preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "الكاميرا📷 ", style: .default, handler: { [weak self] _ in
+        actionSheet.addAction(UIAlertAction(title: "Camera📷 ", style: .default, handler: { [weak self] _ in
             
             let picker = UIImagePickerController()
             picker.sourceType = .camera
@@ -215,7 +216,7 @@ class NewPart: UIViewController, UITextFieldDelegate,  UIImagePickerControllerDe
             self?.present(picker, animated: true)
             
         }))
-        actionSheet.addAction(UIAlertAction(title: "مكتبه الصور🌄", style: .default, handler: { [weak self] _ in
+        actionSheet.addAction(UIAlertAction(title: "Librari 🌄", style: .default, handler: { [weak self] _ in
             
             let picker = UIImagePickerController()
             picker.sourceType = .photoLibrary
@@ -224,7 +225,7 @@ class NewPart: UIViewController, UITextFieldDelegate,  UIImagePickerControllerDe
             self?.present(picker, animated: true)
             
         }))
-        actionSheet.addAction(UIAlertAction(title: "إلغاء", style: .cancel, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "Cancle", style: .cancel, handler: nil))
         
         present(actionSheet, animated: true)
         //            setupImagePicker()

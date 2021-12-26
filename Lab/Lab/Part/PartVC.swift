@@ -166,24 +166,24 @@ class Cell3: UITableViewCell {
         return label
     }()
     
-    public let label4: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
-        label.textColor = .black
-        label.font = UIFont(name: "Avenir-Light", size: 18)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .left
-        return label
-    }()
-    public let label5: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
-        label.textColor = .black
-        label.textAlignment = .left
-        label.font = UIFont(name: "Avenir-Light", size: 18)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+//    public let label4: UILabel = {
+//        let label = UILabel()
+//        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+//        label.textColor = .black
+//        label.font = UIFont(name: "Avenir-Light", size: 18)
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.textAlignment = .left
+//        return label
+//    }()
+//    public let label5: UILabel = {
+//        let label = UILabel()
+//        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+//        label.textColor = .black
+//        label.textAlignment = .left
+//        label.font = UIFont(name: "Avenir-Light", size: 18)
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        return label
+//    }()
     public let label6: UILabel = {
         let label = UILabel()
 //        label.text = "a"
@@ -209,14 +209,14 @@ class Cell3: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         contentView.clipsToBounds = true
-        contentView.backgroundColor = #colorLiteral(red: 1, green: 0.9926941103, blue: 0.9993625388, alpha: 1)
+        contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 13
         
 
         
         self.addSubview(label2)
         self.addSubview(label3)
-        self.addSubview(label4)
+//        self.addSubview(label4)
         self.addSubview(label6)
         self.addSubview(img)
         
@@ -229,11 +229,11 @@ class Cell3: UITableViewCell {
             label3.rightAnchor.constraint(equalTo: self.rightAnchor),
             label3.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 9),
             
-            label4.topAnchor.constraint(equalTo: label3.bottomAnchor, constant: 10),
-            label4.rightAnchor.constraint(equalTo: self.rightAnchor),
-            label4.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 9),
+//            label4.topAnchor.constraint(equalTo: label3.bottomAnchor, constant: 10),
+//            label4.rightAnchor.constraint(equalTo: self.rightAnchor),
+//            label4.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 9),
             
-            label6.topAnchor.constraint(equalTo: label4.bottomAnchor, constant: 10),
+            label6.topAnchor.constraint(equalTo: label3.bottomAnchor, constant: 10),
             label6.rightAnchor.constraint(equalTo: self.rightAnchor),
             label6.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 9),
             img.topAnchor.constraint(equalTo: label6.bottomAnchor, constant: 10),

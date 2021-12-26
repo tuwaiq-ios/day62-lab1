@@ -31,7 +31,7 @@ import UIKit
           
             createNavController(for:CustomersVC(), title: NSLocalizedString("Customer", comment: ""), image: UIImage(systemName: "person")!),
             
-           createNavController(for:SupplierVc(), title: NSLocalizedString("Supplier", comment: ""), image: UIImage(systemName: "person")!),
+           createNavController(for:SupplierVc(), title: NSLocalizedString("Supplier", comment: ""), image: UIImage(systemName: "shippingbox")!),
          ]
        }
         
@@ -41,7 +41,7 @@ import UIKit
           setupVCs()
      
           view.backgroundColor = UIColor.gray
-           
+          tabBar.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
       }
        
     }

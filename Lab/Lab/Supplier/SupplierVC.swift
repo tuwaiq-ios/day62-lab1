@@ -18,7 +18,7 @@ class SupplierVc : UIViewController, UITableViewDelegate, UITableViewDataSource,
         tablaView.delegate = self
         tablaView.dataSource = self
         tablaView.register(SupplierCell.self, forCellReuseIdentifier: SupplierCell.identifire)
-        tablaView.backgroundColor = .white
+        tablaView.backgroundColor = #colorLiteral(red: 0.8457269349, green: 0.9060993338, blue: 1, alpha: 1)
         return tablaView
     }()
     
@@ -32,7 +32,8 @@ class SupplierVc : UIViewController, UITableViewDelegate, UITableViewDataSource,
         let data = fetchedResultsController?.fetchedObjects?[indexPath.row]
         cell.nameLable.text = "Name: \(data!.name!)"
         cell.websiteLable.text = "Website: \((data!.website?.absoluteString)!)"
-        
+        cell.pLable.text = "Phone: \(data!.phone!)"
+        cell.aLable.text = "Address: \(data!.address!)"
         return  cell
     }
     
@@ -42,6 +43,7 @@ class SupplierVc : UIViewController, UITableViewDelegate, UITableViewDataSource,
         }
         let partVC = PartVC()
         partVC.supplier = fetchSupplier
+        partVC.title = fetchedResultsController?.fetchedObjects?[indexPath.row].name
         let navController = UINavigationController(rootViewController: partVC)
         present(navController, animated: true, completion: nil)
     }
@@ -88,7 +90,7 @@ class SupplierVc : UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 185
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -151,6 +153,23 @@ class SupplierCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    let pLable: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.text = ""
+        label.font = label.font.withSize(19)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let aLable: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.text = ""
+        label.font = label.font.withSize(19)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
@@ -159,6 +178,8 @@ class SupplierCell: UITableViewCell {
         
         self.addSubview(nameLable)
         self.addSubview(websiteLable)
+        self.addSubview(pLable)
+        self.addSubview(aLable)
         
         NSLayoutConstraint.activate([
             nameLable.topAnchor.constraint(equalTo: self.topAnchor),
@@ -168,6 +189,14 @@ class SupplierCell: UITableViewCell {
             websiteLable.topAnchor.constraint(equalTo: nameLable.bottomAnchor, constant: 27),
             websiteLable.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 10),
             websiteLable.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
+            
+            pLable.topAnchor.constraint(equalTo: websiteLable.bottomAnchor, constant: 27),
+            pLable.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 10),
+            pLable.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
+            
+            aLable.topAnchor.constraint(equalTo: pLable.bottomAnchor, constant: 27),
+            aLable.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 10),
+            aLable.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
         ])
     }
     
