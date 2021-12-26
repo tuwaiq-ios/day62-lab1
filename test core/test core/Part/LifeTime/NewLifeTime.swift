@@ -21,14 +21,14 @@ class NewLifeTime: UIViewController, UITextFieldDelegate {
         dp.layer.cornerRadius = 12
         return dp
     }()
-//    lazy var datePicker2: UIDatePicker = {
-//        let dp = UIDatePicker()
-//        dp.translatesAutoresizingMaskIntoConstraints = false
-//        dp.addTarget(self, action: #selector(dateChanged2), for: .valueChanged)
-//        dp.datePickerMode = .date
-//        dp.layer.cornerRadius = 12
-//        return dp
-//    }()
+    lazy var datePicker2: UIDatePicker = {
+        let dp = UIDatePicker()
+        dp.translatesAutoresizingMaskIntoConstraints = false
+        dp.addTarget(self, action: #selector(dateChanged2), for: .valueChanged)
+        dp.datePickerMode = .date
+        dp.layer.cornerRadius = 12
+        return dp
+    }()
     
     lazy var TF1: UITextField = {
         let tf = UITextField()
@@ -111,7 +111,7 @@ class NewLifeTime: UIViewController, UITextFieldDelegate {
         s.shipInstructions = TF1.text ?? ""
         s.returnFlag = Bool(TF2.text ?? "") ?? true
         s.shipDate =  datePicker.date
-//        s.reciptDate =  datePicker2.date
+        s.reciptDate =  datePicker2.date
         s.quantity = Int32(TF3.text ?? "") ?? 0
         
         DataService.shared.saveContext()
@@ -122,10 +122,10 @@ class NewLifeTime: UIViewController, UITextFieldDelegate {
         
         print("New date = \(datePicker.date)")
     }
-//    @objc func dateChanged2() {
-//
-//        print("New date = \(datePicker.date)")
-//    }
+    @objc func dateChanged2() {
+
+        print("New date = \(datePicker.date)")
+    }
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -175,27 +175,29 @@ class NewLifeTime: UIViewController, UITextFieldDelegate {
             TF3.heightAnchor.constraint(equalToConstant: 48),
             TF3.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -48)
         ])
-        NSLayoutConstraint.activate([
-            addButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -80),
-            addButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 80),
-            addButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -300),
-            addButton.widthAnchor.constraint(equalToConstant: 400),
-            addButton.heightAnchor.constraint(equalToConstant: 60),
-        ])
+       
         
    
         view.addSubview(datePicker)
         NSLayoutConstraint.activate([
             datePicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            datePicker.topAnchor.constraint(equalTo: view.topAnchor, constant: 380),
+            datePicker.topAnchor.constraint(equalTo: TF3.bottomAnchor, constant: 10),
         
         ])
-//        view.addSubview(datePicker2)
-//        NSLayoutConstraint.activate([
-//            datePicker2.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            datePicker2.topAnchor.constraint(equalTo: view.topAnchor, constant: 410),
-//
-//        ])
+        view.addSubview(datePicker2)
+        NSLayoutConstraint.activate([
+            datePicker2.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            datePicker2.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 10),
+
+        ])
+        
+        NSLayoutConstraint.activate([
+            addButton.topAnchor.constraint(equalTo: datePicker2.bottomAnchor, constant: 10),
+            addButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -80),
+            addButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 80),
+            addButton.widthAnchor.constraint(equalToConstant: 400),
+            addButton.heightAnchor.constraint(equalToConstant: 60),
+        ])
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

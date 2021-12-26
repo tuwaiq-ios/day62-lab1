@@ -102,7 +102,7 @@ extension PartVC {
          cell.label2.text = "Name: \(order?.name ?? "")"
          cell.label3.text = "Retail Price:\(order!.retailPrice)"
          cell.label6.text =  "Size: \(order!.size)"
-//         cell.img.image = UIImage(data: order!.image!)
+         cell.img.image = UIImage(data: order!.image!)
 //         cell.img.image = UIImage(data: order!.image!)
       
 

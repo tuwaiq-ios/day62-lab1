@@ -27,8 +27,8 @@
                                 <color key="textColor" red="0.2941176593" green="0.64705884459999996" blue="0.90196073060000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lab 62 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="178-hT-g0d">
-                                <rect key="frame" x="125" y="784" width="164" height="58"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lab 62 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="178-hT-g0d">
+                                <rect key="frame" x="47" y="787" width="304" height="58"/>
                                 <fontDescription key="fontDescription" name="Kefa-Regular" family="Kefa" pointSize="50"/>
                                 <color key="textColor" red="0.2941176593" green="0.64705884459999996" blue="0.90196073060000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -40,18 +40,18 @@
                             <constraint firstItem="bFW-U4-aL6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="241" id="0RF-Fy-4Hp"/>
                             <constraint firstItem="6f7-50-bWB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="2pu-dW-4Sp"/>
                             <constraint firstItem="bFW-U4-aL6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="98" id="WPr-pJ-Aeo"/>
-                            <constraint firstItem="6f7-50-bWB" firstAttribute="centerX" secondItem="178-hT-g0d" secondAttribute="centerX" id="X61-7G-KQG"/>
+                            <constraint firstItem="6f7-50-bWB" firstAttribute="centerX" secondItem="178-hT-g0d" secondAttribute="centerX" constant="8" id="X61-7G-KQG"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bFW-U4-aL6" secondAttribute="trailing" symbolic="YES" id="cEu-5M-DS8"/>
                             <constraint firstItem="6f7-50-bWB" firstAttribute="top" secondItem="bFW-U4-aL6" secondAttribute="bottom" constant="31" id="e6i-0g-YWm"/>
                             <constraint firstItem="6f7-50-bWB" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="kQp-Gh-36g"/>
-                            <constraint firstItem="178-hT-g0d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="125" id="nHF-2a-tBF"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="178-hT-g0d" secondAttribute="bottom" constant="20" id="wcL-KQ-Nur"/>
+                            <constraint firstItem="178-hT-g0d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="47" id="nHF-2a-tBF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="178-hT-g0d" secondAttribute="bottom" constant="17" id="wcL-KQ-Nur"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
     <resources>
