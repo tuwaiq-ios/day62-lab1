@@ -38,6 +38,31 @@ class NewSupplier: UIViewController, UITextFieldDelegate {
     }()
     
     
+    lazy var contentTF3: UITextField = {
+        let tf = UITextField()
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.placeholder = "Add Phone"
+        tf.textAlignment = .center
+        tf.delegate = self
+        tf.layer.borderWidth = 1
+        tf.layer.borderColor = UIColor.black.cgColor
+        tf.layer.cornerRadius = 25
+       
+        return tf
+    }()
+    
+    lazy var contentTF4: UITextField = {
+        let tf = UITextField()
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.placeholder = "Add Address"
+        tf.textAlignment = .center
+        tf.delegate = self
+        tf.layer.borderWidth = 1
+        tf.layer.borderColor = UIColor.black.cgColor
+        tf.layer.cornerRadius = 25
+        return tf
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title =  NSLocalizedString("Add new supplier", comment:"")
@@ -46,23 +71,38 @@ class NewSupplier: UIViewController, UITextFieldDelegate {
         view.backgroundColor = .white
         view.addSubview(contentTF)
         view.addSubview(contentTF2)
+        view.addSubview(contentTF3)
+        view.addSubview(contentTF4)
       
         NSLayoutConstraint.activate([
-            contentTF.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            contentTF.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
             contentTF.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
             contentTF.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             contentTF.heightAnchor.constraint(equalToConstant: 100),
             
             
             
-            contentTF2.topAnchor.constraint(equalTo: view.topAnchor, constant: 250),
+            contentTF2.topAnchor.constraint(equalTo: view.topAnchor, constant: 300),
             contentTF2.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
             contentTF2.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             contentTF2.heightAnchor.constraint(equalToConstant: 100),
+            
+            contentTF3.topAnchor.constraint(equalTo: view.topAnchor, constant: 450),
+            contentTF3.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            contentTF3.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            contentTF3.heightAnchor.constraint(equalToConstant: 100),
+            
+            contentTF4.topAnchor.constraint(equalTo: view.topAnchor, constant: 600),
+            contentTF4.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            contentTF4.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            contentTF4.heightAnchor.constraint(equalToConstant: 100),
         
         ])
+        
         contentTF.text = data?.name
         contentTF2.text = data?.website?.absoluteString
+        contentTF3.text = data?.phone
+        contentTF4.text = data?.address
     
 }
     
@@ -75,6 +115,8 @@ class NewSupplier: UIViewController, UITextFieldDelegate {
         )
         supplier.name = contentTF.text ?? ""
         supplier.website = URL(string: contentTF2.text ?? "")
+        supplier.phone = contentTF3.text ?? ""
+        supplier.address = contentTF4.text ?? ""
         
         DataService.shared.saveContext()
         

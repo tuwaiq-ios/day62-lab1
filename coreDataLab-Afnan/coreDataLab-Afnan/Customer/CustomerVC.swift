@@ -19,6 +19,7 @@ class CustomersVC: UITableViewController, NSFetchedResultsControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.9376022816, green: 0.9575132728, blue: 0.8224243522, alpha: 1)
+        tableView.register(CustomerCell.self, forCellReuseIdentifier: CustomerCell.identifire)
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Add",
             style: .done,
@@ -70,6 +71,10 @@ class CustomersVC: UITableViewController, NSFetchedResultsControllerDelegate {
         
         tableView.reloadData()
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
 }
 
 
@@ -81,12 +86,13 @@ extension CustomersVC {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell.init(style: .subtitle, reuseIdentifier: "123")
-       
-        let customer = fetchedResultsController?.fetchedObjects?[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomerCell", for: indexPath) as! CustomerCell
         
-        cell.textLabel?.text = "First Name: \(customer?.firsetName ?? "")"
-        cell.detailTextLabel?.text = "Last Name:\(customer?.lastName ?? "")"
+        let data = fetchedResultsController?.fetchedObjects?[indexPath.row]
+        cell.firstLabel.text = data?.firsetName
+        cell.lastLabel.text = data?.lastName
+        cell.phoneLable.text = data?.phone
+        cell.addressLable.text = data?.address
 
         return cell
     }
@@ -124,3 +130,79 @@ extension CustomersVC {
         )
     }
 }
+
+class CustomerCell: UITableViewCell {
+    static let identifire = "CustomerCell"
+    
+    let firstLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.text = ""
+        label.font = label.font.withSize(19)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let lastLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.text = ""
+        label.font = label.font.withSize(19)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let phoneLable: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.text = ""
+        label.font = label.font.withSize(19)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let addressLable: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.text = ""
+        label.font = label.font.withSize(19)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+        
+        contentView.backgroundColor = .white
+        
+        self.addSubview(firstLabel)
+        self.addSubview(lastLabel)
+        self.addSubview(phoneLable)
+        self.addSubview(addressLable)
+        
+        NSLayoutConstraint.activate([
+            firstLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            firstLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 20),
+            firstLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
+            
+            lastLabel.topAnchor.constraint(equalTo: firstLabel.bottomAnchor, constant: 27),
+            lastLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 10),
+            lastLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
+            
+            phoneLable.topAnchor.constraint(equalTo: lastLabel.bottomAnchor, constant: 27),
+            phoneLable.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 20),
+            phoneLable.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
+            
+            addressLable.topAnchor.constraint(equalTo: phoneLable.bottomAnchor, constant: 27),
+            addressLable.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 10),
+            addressLable.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
+        ])
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+}
+

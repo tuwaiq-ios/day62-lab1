@@ -33,6 +33,8 @@ class SupplierVc : UIViewController, UITableViewDelegate, UITableViewDataSource,
         let data = fetchedResultsController?.fetchedObjects?[indexPath.row]
         cell.nameLable.text = data?.name
         cell.websiteLable.text = data?.website?.absoluteString
+        cell.phoneLable.text = data?.phone
+        cell.addressLable.text = data?.address
         
         return  cell
     }
@@ -89,7 +91,7 @@ class SupplierVc : UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 200
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -153,6 +155,24 @@ class SupplierCell: UITableViewCell {
         return label
     }()
     
+    let phoneLable: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.text = ""
+        label.font = label.font.withSize(19)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let addressLable: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.text = ""
+        label.font = label.font.withSize(19)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         
@@ -160,6 +180,8 @@ class SupplierCell: UITableViewCell {
         
         self.addSubview(nameLable)
         self.addSubview(websiteLable)
+        self.addSubview(phoneLable)
+        self.addSubview(addressLable)
         
         NSLayoutConstraint.activate([
             nameLable.topAnchor.constraint(equalTo: self.topAnchor),
@@ -169,6 +191,14 @@ class SupplierCell: UITableViewCell {
             websiteLable.topAnchor.constraint(equalTo: nameLable.bottomAnchor, constant: 27),
             websiteLable.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 10),
             websiteLable.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
+            
+            phoneLable.topAnchor.constraint(equalTo: websiteLable.bottomAnchor, constant: 27),
+            phoneLable.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 20),
+            phoneLable.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
+            
+            addressLable.topAnchor.constraint(equalTo: phoneLable.bottomAnchor, constant: 27),
+            addressLable.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 10),
+            addressLable.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
         ])
     }
     

@@ -37,6 +37,30 @@ class NewCustomer: UIViewController, UITextFieldDelegate {
         return tf
     }()
     
+    lazy var TF3: UITextField = {
+        let tf = UITextField()
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.placeholder = NSLocalizedString("", comment:"  ")
+        tf.backgroundColor = .white
+        tf.textAlignment = .center
+        tf.placeholder = "Phone"
+        tf.delegate = self
+        tf.layer.cornerRadius = 20
+        return tf
+    }()
+    
+    lazy var TF4: UITextField = {
+        let tf = UITextField()
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.placeholder = NSLocalizedString("", comment:"   ")
+        tf.backgroundColor = .white
+        tf.textAlignment = .center
+        tf.placeholder = "Address"
+        tf.delegate = self
+        tf.layer.cornerRadius = 20
+        return tf
+    }()
+    
     lazy var addButton: UIButton = {
         let b = UIButton()
         b.addTarget(self, action: #selector(add), for: .touchUpInside)
@@ -56,6 +80,8 @@ class NewCustomer: UIViewController, UITextFieldDelegate {
         )
         s.firsetName = TF1.text ?? ""
         s.lastName = TF2.text ?? ""
+        s.phone = TF3.text ?? ""
+        s.address = TF4.text ?? ""
         
         DataService.shared.saveContext()
     }
@@ -68,8 +94,8 @@ class NewCustomer: UIViewController, UITextFieldDelegate {
         TF2.text = a?.lastName
       
         view.addSubview(addButton)
+        
         view.addSubview(TF1)
-    
         NSLayoutConstraint.activate([
             TF1.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             TF1.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
@@ -85,10 +111,26 @@ class NewCustomer: UIViewController, UITextFieldDelegate {
             TF2.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -48)
         ])
         
+        view.addSubview(TF3)
+        NSLayoutConstraint.activate([
+            TF3.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            TF3.topAnchor.constraint(equalTo: view.topAnchor, constant: 350),
+            TF3.heightAnchor.constraint(equalToConstant: 48),
+            TF3.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -48)
+        ])
+        
+        view.addSubview(TF4)
+        NSLayoutConstraint.activate([
+            TF4.topAnchor.constraint(equalTo: view.topAnchor, constant: 450),
+            TF4.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            TF4.heightAnchor.constraint(equalToConstant: 48),
+            TF4.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -48)
+        ])
+        
         NSLayoutConstraint.activate([
             addButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -80),
             addButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 80),
-            addButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -300),
+            addButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100),
             addButton.widthAnchor.constraint(equalToConstant: 400),
             addButton.heightAnchor.constraint(equalToConstant: 60),
         ])
