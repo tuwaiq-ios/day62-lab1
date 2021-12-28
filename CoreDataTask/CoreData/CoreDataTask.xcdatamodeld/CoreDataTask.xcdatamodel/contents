@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Customers" representedClassName=".Customers" syncable="YES" codeGenerationType="class">
+        <attribute name="firstName" attributeType="String"/>
+        <attribute name="lastName" optional="YES" attributeType="String"/>
+        <relationship name="orders" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Orders" inverseName="parentCustomer" inverseEntity="Orders"/>
+    </entity>
+    <entity name="Lifetime" representedClassName="Lifetime" syncable="YES" codeGenerationType="class">
+        <attribute name="quantity" optional="YES" attributeType="String"/>
+        <attribute name="releaseDate" optional="YES" attributeType="String"/>
+        <attribute name="returnFlag" optional="YES" attributeType="String"/>
+        <attribute name="shipInstructions" optional="YES" attributeType="String"/>
+        <attribute name="shopDate" optional="YES" attributeType="String"/>
+        <relationship name="parentOrder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Orders" inverseName="lifeTime" inverseEntity="Orders"/>
+    </entity>
+    <entity name="Orders" representedClassName=".Orders" syncable="YES" codeGenerationType="class">
+        <attribute name="orderDate" attributeType="String"/>
+        <attribute name="orderPrice" attributeType="String"/>
+        <attribute name="shippingPriority" optional="YES" attributeType="String"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <relationship name="lifeTime" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Lifetime" inverseName="parentOrder" inverseEntity="Lifetime"/>
+        <relationship name="orderToPart" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Part"/>
+        <relationship name="parentCustomer" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Customers" inverseName="orders" inverseEntity="Customers"/>
+    </entity>
+    <entity name="Part" representedClassName="Part" syncable="YES" codeGenerationType="class">
+        <attribute name="image" optional="YES" attributeType="Binary"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="retailPrice" optional="YES" attributeType="String"/>
+        <attribute name="size" optional="YES" attributeType="String"/>
+        <relationship name="parentSupplier" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Supplier" inverseName="supplier" inverseEntity="Supplier"/>
+        <relationship name="trackable" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trackable" inverseName="parentTrackable" inverseEntity="Trackable"/>
+    </entity>
+    <entity name="Supplier" representedClassName="Supplier" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="website" optional="YES" attributeType="String"/>
+        <relationship name="supplier" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Part" inverseName="parentSupplier" inverseEntity="Part"/>
+    </entity>
+    <entity name="Trackable" representedClassName="Trackable" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="phone" optional="YES" attributeType="String"/>
+        <relationship name="parentTrackable" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Part" inverseName="trackable" inverseEntity="Part"/>
+    </entity>
+    <elements>
+        <element name="Customers" positionX="-331.39453125" positionY="-190.3046875" width="128" height="74"/>
+        <element name="Lifetime" positionX="-158.68359375" positionY="-82.87109375" width="128" height="119"/>
+        <element name="Orders" positionX="-276.24609375" positionY="121.51953125" width="128" height="148"/>
+        <element name="Part" positionX="187.234375" positionY="47.203125" width="128" height="133"/>
+        <element name="Supplier" positionX="171.61328125" positionY="-194.39453125" width="128" height="74"/>
+        <element name="Trackable" positionX="-108.31640625" positionY="-233.10546875" width="128" height="74"/>
+    </elements>
+</model>
